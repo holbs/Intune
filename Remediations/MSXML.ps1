@@ -28,13 +28,18 @@ If ($OSArch -eq "64") {
     $FilePath = "$env:WINDIR\System32"
     $CLSIDPaths = "HKCR:\CLSID", "HKLM:\SOFTWARE\Classes\CLSID"
 }
-# Check if the DLLs are present in %sysnative%\System32 and return false if they are
+# Check if the software is installed and exit with error code 1 if it is
+$MSXML = Get-Package -Name "MSXML 4.0 * Parser"
+If ($MSXML) {
+    Exit 1
+}
+# Check if the DLLs are present in %sysnative%\System32 and exit with error code 1 if they are
 Foreach ($File in $FileNames) {
     If (Test-Path "$FilePath\$File") {
         Exit 1
     }
 }
-# Check if the Class IDs are present in HKEY_CLASSES_ROOT and return false if they are
+# Check if the Class IDs are present in HKEY_CLASSES_ROOT and exit with error code 1 if they are
 Foreach ($Path in $CLSIDPaths) {
     Foreach ($ID in $CLSIDs) {
         If (Test-Path "$Path\$ID") {
@@ -42,7 +47,7 @@ Foreach ($Path in $CLSIDPaths) {
         }
     }
 }
-Exit 0
+Return $true
 #EndRegion
 #Region: Remediation
 New-PSDrive -Name HKCR -PSProvider Registry -Root "HKEY_CLASSES_ROOT"
@@ -73,6 +78,11 @@ If ($OSArch -eq "64") {
 } Else {
     $FilePath = "$env:WINDIR\System32"
     $CLSIDPaths = "HKCR:\CLSID", "HKLM:\SOFTWARE\Classes\CLSID"
+}
+# Check if the software is installed and uninstall it if it is
+$MSXML = Get-Package -Name "MSXML 4.0 * Parser"
+If ($MSXML) {
+    $MSXML | Uninstall-Package -Force -Confirm:$false
 }
 # Check if the DLLs are present in %sysnative%\System32 and if they are unregister them, then move them if they're still present
 Foreach ($File in $FileNames) {
