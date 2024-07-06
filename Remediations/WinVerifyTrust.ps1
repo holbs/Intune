@@ -17,10 +17,10 @@ Try {
 Exit 0
 #EndRegion
 #Region: Remediation
-New-Item -Path 'HKLM:\Software\Microsoft\Cryptography\Wintrust'
-New-Item -Path 'HKLM:\Software\Microsoft\Cryptography\Wintrust\Config'
-New-ItemProperty -Path 'HKLM:\Software\Microsoft\Cryptography\Wintrust\Config' -Name 'EnableCertPaddingCheck' -Value '1' -Type String -Force
-New-Item -Path 'HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust'
-New-Item -Path 'HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config'
-New-ItemProperty -Path 'HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config' -Name 'EnableCertPaddingCheck' -Value '1' -Type String -Force
+New-Item -Path 'HKLM:\Software\Microsoft\Cryptography\Wintrust' -Force | Out-Null
+New-Item -Path 'HKLM:\Software\Microsoft\Cryptography\Wintrust\Config' -Force | Out-Null
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Cryptography\Wintrust\Config' -Name 'EnableCertPaddingCheck' -Value '1' -Type String -Force | Out-Null
+New-Item -Path 'HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust' -Force | Out-Null
+New-Item -Path 'HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config' -Force | Out-Null
+New-ItemProperty -Path 'HKLM:\Software\Wow6432Node\Microsoft\Cryptography\Wintrust\Config' -Name 'EnableCertPaddingCheck' -Value '1' -Type String -Force | Out-Null
 #EndRegion
