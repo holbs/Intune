@@ -1,5 +1,10 @@
 #Region: Detection
-Get-Service -Name "SMS Agent Host" -ErrorAction SilentlyContinue
+$SMSAgentHost = Get-Service -Name "SMS Agent Host" -ErrorAction SilentlyContinue
+If ($SMSAgentHost) {
+    Exit 0 # Configuration Manager client is detected
+} Else {
+    Exit 1 # Configuration Manager client is not detected
+}
 #EndRegion
 #Region: Uninstall
 $Process = Start-Process -FilePath "$env:WINDIR\ccmsetup\ccmsetup.exe" -ArgumentList "/Uninstall" -PassThru
