@@ -1,0 +1,23 @@
+{
+    "Rules": [
+        {
+            "SettingName": "WindowsUpdateComplianceCheck",
+            "Operator": "IsEquals",
+            "DataType": "Boolean",
+            "Operand": "true",
+            "MoreInfoUrl": "https://learn.microsoft.com/en-us/windows/release-health/release-information",
+            "RemediationStrings": [
+                {
+                    "Language": "en_US",
+                    "Title": "Operating System needs to be updated within the last 3 months",
+                    "Description": "Your Operating System build indicates the workstation has not updated in the last 3 months"
+                },
+                {
+                    "Language": "en_GB",
+                    "Title": "Operating System needs to be updated within the last 3 months",
+                    "Description": "Your Operating System build indicates the workstation has not updated in the last 3 months"
+                }
+            ]
+        }
+    ]
+}
