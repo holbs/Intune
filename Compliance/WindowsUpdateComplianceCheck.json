@@ -11,11 +11,6 @@
                     "Language": "en_US",
                     "Title": "Operating System needs to be updated within the last 3 months",
                     "Description": "Your Operating System build indicates the workstation has not updated in the last 3 months"
-                },
-                {
-                    "Language": "en_GB",
-                    "Title": "Operating System needs to be updated within the last 3 months",
-                    "Description": "Your Operating System build indicates the workstation has not updated in the last 3 months"
                 }
             ]
         }
